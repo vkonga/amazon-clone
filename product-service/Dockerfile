@@ -13,7 +13,7 @@ WORKDIR /app/product-service
 RUN npm install --omit=dev
 
 # Environment Variables
-ENV MONGODB_URI=mongodb://your-mongodb-host:27017/productdb
+ENV MONGODB_URI=mongodb+srv://venkatesh:Young1997@cluster0.qndyo50.mongodb.net/amazon_clone_product?appName=Cluster0
 
 EXPOSE 3002
 
