@@ -6,7 +6,7 @@ FROM node:18-alpine
 WORKDIR /app
  
 # Copy the shared library first
-COPY shared ./shared
+COPY shared .
  
 # Copy the service code
 COPY *.js .
