@@ -1,4 +1,3 @@
-
 # Base image
 FROM node:18-alpine
  
@@ -6,10 +5,10 @@ FROM node:18-alpine
 WORKDIR /app
  
 # Copy the shared library first
-COPY shared .
+COPY shared ./shared
  
 # Copy the service code
-COPY *.js .
+COPY product-service ./product-service
  
 # Install dependencies for the shared library
 RUN cd shared && npm ci --omit=dev
