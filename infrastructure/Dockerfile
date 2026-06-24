@@ -9,7 +9,7 @@ WORKDIR /app
 COPY shared ./shared
  
 # Copy the service code
-COPY product-service ./product-service
+COPY *.js .
  
 # Install dependencies for the shared library
 RUN cd shared && npm ci --omit=dev
