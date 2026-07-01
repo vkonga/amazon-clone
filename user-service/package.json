@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@amazon-clone/shared": "file:../shared",
+    "@amazon-clone/shared": "file:./shared",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

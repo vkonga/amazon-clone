@@ -1,13 +1,117 @@
 version: '3.8'
 
 services:
+  # 1. MongoDB Service (Optional if using MongoDB Atlas, but provided for local/fallback use)
   mongodb:
-    image: mongo:6.0
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
     container_name: amazon-clone-mongodb
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    restart: always
+
+  # 2. User Service
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    container_name: amazon-clone-user-service
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb://mongodb:27017/amazon_clone_user
+      - JWT_SECRET=secret123
+      - JWT_ACCESS_EXPIRE=15m
+      - JWT_REFRESH_EXPIRE=7d
+      - NODE_ENV=development
+      - LOG_LEVEL=info
+    depends_on:
+      - mongodb
+    restart: always
+
+  # 3. Product Service
+  product-service:
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    container_name: amazon-clone-product-service
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - MONGODB_URI=mongodb://mongodb:27017/amazon_clone_product
+      - JWT_SECRET=secret123
+      - NODE_ENV=development
+      - LOG_LEVEL=info
+    depends_on:
+      - mongodb
+    restart: always
+
+  # 4. Payment Service
+  payment-service:
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile
+    container_name: amazon-clone-payment-service
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+      - MONGODB_URI=mongodb://mongodb:27017/amazon_clone_payment
+      - JWT_SECRET=secret123
+      - NODE_ENV=development
+      - LOG_LEVEL=info
+    depends_on:
+      - mongodb
+    restart: always
+
+  # 5. Order Service
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    container_name: amazon-clone-order-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - MONGODB_URI=mongodb://mongodb:27017/amazon_clone_order
+      - JWT_SECRET=secret123
+      # We use container names for communication inside the docker network
+      - PRODUCT_SERVICE_URL=http://product-service:3002/api
+      - PAYMENT_SERVICE_URL=http://payment-service:3004/api
+      - NODE_ENV=development
+      - LOG_LEVEL=info
+    depends_on:
+      - mongodb
+      - product-service
+      - payment-service
+    restart: always
+
+  # 6. Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      # Vite embeds env vars in the bundle at build-time.
+      # These must point to the endpoints reachable by the user's web browser (localhost).
+      args:
+        - VITE_USER_SERVICE_URL=http://localhost:3001/api
+        - VITE_PRODUCT_SERVICE_URL=http://localhost:3002/api
+        - VITE_ORDER_SERVICE_URL=http://localhost:3003/api
+        - VITE_PAYMENT_SERVICE_URL=http://localhost:3004/api
+    container_name: amazon-clone-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - user-service
+      - product-service
+      - order-service
+      - payment-service
     restart: always
 
 volumes:

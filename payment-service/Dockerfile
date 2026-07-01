@@ -13,14 +13,14 @@ COPY package*.json ./
 # Install dependencies for the shared library
 RUN cd shared && npm ci --omit=dev
 
-# Install dependencies for the product-service
+# Install dependencies for the payment-service
 RUN npm ci --omit=dev
 
 # Copy application source code
 COPY . .
 
 # Expose service port
-EXPOSE 3002
+EXPOSE 3004
 
 # Start the service
 CMD ["npm", "start"]
