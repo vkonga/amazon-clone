@@ -1,5 +1,5 @@
 const authService = require('../services/auth.service');
-const { sendSuccess } = require('@amazon-clone/shared');
+const { sendSuccess } = require('../shared');
 
 class AuthController {
   async register(req, res, next) {

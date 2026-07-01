@@ -1,5 +1,5 @@
 const productRepository = require('../repositories/product.repository');
-const { NotFoundError, ValidationError } = require('@amazon-clone/shared');
+const { NotFoundError, ValidationError } = require('../shared');
 
 class ProductService {
   // Category logic

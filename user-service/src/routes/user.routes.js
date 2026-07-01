@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller');
 const { validateUpdateProfile, validateAddress } = require('../validators/user.validator');
-const { authenticate } = require('@amazon-clone/shared');
+const { authenticate } = require('../shared');
 
 const jwtSecret = process.env.JWT_SECRET || 'secret123';
 const auth = authenticate(jwtSecret);

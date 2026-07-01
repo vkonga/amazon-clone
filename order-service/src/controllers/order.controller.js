@@ -1,5 +1,5 @@
 const orderService = require('../services/order.service');
-const { sendSuccess, ApiResponse } = require('@amazon-clone/shared');
+const { sendSuccess, ApiResponse } = require('../shared');
 
 class OrderController {
   async createOrder(req, res, next) {

@@ -1,5 +1,5 @@
 const userRepository = require('../repositories/user.repository');
-const { NotFoundError } = require('@amazon-clone/shared');
+const { NotFoundError } = require('../shared');
 
 class UserService {
   async getProfile(userId) {

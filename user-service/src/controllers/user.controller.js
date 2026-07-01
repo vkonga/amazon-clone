@@ -1,5 +1,5 @@
 const userService = require('../services/user.service');
-const { sendSuccess } = require('@amazon-clone/shared');
+const { sendSuccess } = require('../shared');
 
 class UserController {
   async getProfile(req, res, next) {

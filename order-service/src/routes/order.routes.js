@@ -8,7 +8,7 @@ const {
   validateCheckout,
   validateOrderStatus
 } = require('../validators/order.validator');
-const { authenticate, authorize } = require('@amazon-clone/shared');
+const { authenticate, authorize } = require('../shared');
 
 const jwtSecret = process.env.JWT_SECRET || 'secret123';
 const auth = authenticate(jwtSecret);

@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { ValidationError } = require('@amazon-clone/shared');
+const { ValidationError } = require('../shared');
 
 const validateRequest = (schema) => {
   return (req, res, next) => {

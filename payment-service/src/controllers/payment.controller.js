@@ -1,5 +1,5 @@
 const paymentService = require('../services/payment.service');
-const { sendSuccess } = require('@amazon-clone/shared');
+const { sendSuccess } = require('../shared');
 
 class PaymentController {
   async processPayment(req, res, next) {

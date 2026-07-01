@@ -1,5 +1,5 @@
 const cartRepository = require('../repositories/cart.repository');
-const { NotFoundError, ValidationError } = require('@amazon-clone/shared');
+const { NotFoundError, ValidationError } = require('../shared');
 
 class CartService {
   async getCart(userId) {

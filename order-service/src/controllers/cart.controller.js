@@ -1,5 +1,5 @@
 const cartService = require('../services/cart.service');
-const { sendSuccess } = require('@amazon-clone/shared');
+const { sendSuccess } = require('../shared');
 
 class CartController {
   async getCart(req, res, next) {

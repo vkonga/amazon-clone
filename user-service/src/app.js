@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const { logger, errorHandler, notFoundHandler, loadConfig } = require('@amazon-clone/shared');
+const { logger, errorHandler, notFoundHandler, loadConfig } = require('./shared');
 
 // Define configurations schema using Joi
 const configSchema = Joi.object({

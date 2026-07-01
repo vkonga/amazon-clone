@@ -1,5 +1,5 @@
 const transactionRepository = require('../repositories/transaction.repository');
-const { NotFoundError, ValidationError } = require('@amazon-clone/shared');
+const { NotFoundError, ValidationError } = require('../shared');
 
 class PaymentService {
   async processPayment(userId, paymentData) {

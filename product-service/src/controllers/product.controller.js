@@ -1,5 +1,5 @@
 const productService = require('../services/product.service');
-const { sendSuccess, ApiResponse } = require('@amazon-clone/shared');
+const { sendSuccess, ApiResponse } = require('../shared');
 
 class ProductController {
   // Category controllers

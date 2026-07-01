@@ -1,7 +1,7 @@
 const axios = require('axios');
 const orderRepository = require('../repositories/order.repository');
 const cartService = require('./cart.service');
-const { NotFoundError, ValidationError, logger } = require('@amazon-clone/shared');
+const { NotFoundError, ValidationError, logger } = require('../shared');
 
 class OrderService {
   constructor() {

@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const userRepository = require('../repositories/user.repository');
-const { ConflictError, UnauthorizedError, ValidationError } = require('@amazon-clone/shared');
+const { ConflictError, UnauthorizedError, ValidationError } = require('../shared');
 
 class AuthService {
   constructor() {
